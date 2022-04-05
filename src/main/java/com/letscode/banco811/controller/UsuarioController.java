@@ -5,6 +5,7 @@ import com.letscode.banco811.dto.response.UsuarioResponse;
 import com.letscode.banco811.model.Usuario;
 import com.letscode.banco811.service.UsusarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,21 @@ public class UsuarioController {
     UsusarioService ususarioService;
 
     @GetMapping
-    public List<Usuario> getAll(@RequestParam(required = false) String nome){
-        return ususarioService.getAll(nome);
+    public Page<Usuario> getAll(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "3") int size
+            ){
+        return ususarioService.getAll(nome, page, size);
+    }
+
+    @GetMapping("/cpf")
+    public Page<UsuarioResponse> getAllByCpf(
+            @RequestParam(required = false) String cpf,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "3") int size
+    ){
+        return ususarioService.getAllByCpf(cpf,page,size);
     }
 
     @PostMapping

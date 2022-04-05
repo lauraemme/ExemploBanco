@@ -6,9 +6,11 @@ import com.letscode.banco811.model.Usuario;
 import com.letscode.banco811.repository.UsuarioRepository;
 import com.letscode.banco811.service.UsusarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 
 @Service
@@ -18,12 +20,23 @@ public class UsuarioServiceImpl implements UsusarioService {
     UsuarioRepository usuarioRepository;
 
     @Override
-    public List<Usuario> getAll(String nome){
+    public Page<Usuario> getAll(String nome, int page, int size){
+
+        PageRequest pageRequest = PageRequest.of(page,size,
+                Sort.Direction.ASC, "nome"
+        );
+
         if (nome != null){
-            return usuarioRepository.findByNome(nome);
+            return usuarioRepository.findByNome(nome, pageRequest);
         }else {
-            return usuarioRepository.findAll();
+            return usuarioRepository.findAll(pageRequest);
         }
+    }
+
+    @Override
+    public Page<UsuarioResponse> getAllByCpf(String cpf, int page, int size){
+        PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.ASC);
+        return usuarioRepository.findByCpf(cpf, pageRequest);
     }
 
     @Override
