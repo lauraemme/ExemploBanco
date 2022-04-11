@@ -1,6 +1,6 @@
 package com.letscode.banco811.dto.requests;
 
-import com.letscode.banco811.model.TipoConta;
+import com.letscode.banco811.model.enums.TipoConta;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,5 +13,5 @@ public class ContaRequest {
     private Integer agencia;
     private BigDecimal saldo;
     private TipoConta tipoConta;
-    private Integer usuarioId;
+
 }

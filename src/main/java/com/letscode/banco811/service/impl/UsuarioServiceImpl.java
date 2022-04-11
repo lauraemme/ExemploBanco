@@ -19,6 +19,7 @@ public class UsuarioServiceImpl implements UsusarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+
     @Override
     public Page<Usuario> getAll(String nome, int page, int size){
 
@@ -41,8 +42,10 @@ public class UsuarioServiceImpl implements UsusarioService {
 
     @Override
     public UsuarioResponse create(UsuarioRequest usuarioRequest){
+
         Usuario usuario = new Usuario(usuarioRequest);
         usuarioRepository.save(usuario);
+
         return new UsuarioResponse(usuario);
     }
 

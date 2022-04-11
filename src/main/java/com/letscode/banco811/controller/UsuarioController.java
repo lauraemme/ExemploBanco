@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -26,6 +25,7 @@ public class UsuarioController {
         return ususarioService.getAll(nome, page, size);
     }
 
+    //arrumar
     @GetMapping("/cpf")
     public Page<UsuarioResponse> getAllByCpf(
             @RequestParam(required = false) String cpf,

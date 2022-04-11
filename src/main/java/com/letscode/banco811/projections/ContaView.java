@@ -1,6 +1,6 @@
 package com.letscode.banco811.projections;
 
-import com.letscode.banco811.model.TipoConta;
+import com.letscode.banco811.model.enums.TipoConta;
 import org.springframework.beans.factory.annotation.Value;
 
 public interface ContaView {
@@ -10,7 +10,6 @@ public interface ContaView {
 
     @Value("#{target.numero + ' - ' + target.agencia}")
     String getNumeroAgencia();
-
 
     UsuarioView getUsuario();
 }
